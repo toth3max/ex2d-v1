@@ -104,6 +104,28 @@ public static class exTextureHelper {
                               RotateDirection _rotDir,
                               bool _useBgColor,
                               Color _bgColor ) {
+		// Fix from https://forum.unity.com/threads/help-on-setting-read-write-enabled-flag-on-texture.211235/
+		// Not sure if it will work
+		_dest.Apply (false, false); // .Texture2D.Apply(updateMipmaps = true, bool makeNoLongerReadable = false)
+
+		try
+		{
+			_dest.GetPixel(0, 0);
+		}
+		catch(UnityException e)
+		{
+			if(e.Message.StartsWith("Texture '" + _dest.name + "' is not readable"))
+			{
+				Debug.LogError("Please enable read/write on texture [" + _dest.name + "]");
+			}
+		}
+
+		TextureImporter importer = AssetImporter.GetAtPath (AssetDatabase.GetAssetPath(_dest))as TextureImporter; 
+		importer.isReadable = true;
+
+		//AssetDatabase.ImportAsset( AssetDatabase.GetAssetPath(_dest) );
+		//AssetDatabase.Refresh();
+
         int xDest = (int)_pos.x;
         int yDest = (int)_pos.y;
         int xSrc = (int)_rect.x;

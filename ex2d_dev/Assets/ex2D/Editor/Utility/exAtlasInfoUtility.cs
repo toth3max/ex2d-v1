@@ -172,7 +172,7 @@ public static partial class exAtlasInfoUtility {
     // ------------------------------------------------------------------ 
 
     public static void Build ( exAtlasInfo _atlasInfo, bool _noImport = false ) {
-
+		_noImport = false;
         exAtlas atlas = _atlasInfo.atlas;
         Texture2D texture = _atlasInfo.texture;
         Material material = _atlasInfo.material;
