@@ -57,15 +57,15 @@ public class exPixelPerfectCamera : MonoBehaviour {
     void Awake () {
         lastScreenWidth         = Screen.width;
         lastScreenHeight        = Screen.height;
-        lastOrthographicSize    = camera.orthographicSize;
-        lastFieldOfView         = camera.fieldOfView;
-        lastOrthographic        = camera.orthographic;
+        lastOrthographicSize    = GetComponent<Camera>().orthographicSize;
+        lastFieldOfView         = GetComponent<Camera>().fieldOfView;
+        lastOrthographic        = GetComponent<Camera>().orthographic;
 
         CalculateScaleAndRatio ();
         exPixelPerfect[] ppfs = GameObject.FindObjectsOfType ( typeof(exPixelPerfect) ) as exPixelPerfect[];
         for ( int i = 0; i < ppfs.Length; ++i ) {
             exSpriteBase sprite = ppfs[i].GetComponent<exSpriteBase>();
-            if ( sprite == null || sprite.renderCamera != camera )
+            if ( sprite == null || sprite.renderCamera != GetComponent<Camera>() )
                 continue;
 
             CalculatePixelPerfectScale ( sprite, sprite.transform.position - transform.position );
@@ -97,7 +97,7 @@ public class exPixelPerfectCamera : MonoBehaviour {
         }
 
         //
-        if ( camera.orthographic ) {
+        if ( GetComponent<Camera>().orthographic ) {
             if ( fixOrthographicSize ) {
                 if ( lastOrthographicSize != orthographicSize ) {
                     lastOrthographicSize = orthographicSize;
@@ -105,22 +105,22 @@ public class exPixelPerfectCamera : MonoBehaviour {
                 }
             }
             else {
-                if ( lastOrthographicSize != camera.orthographicSize ) {
-                    lastOrthographicSize = camera.orthographicSize;
+                if ( lastOrthographicSize != GetComponent<Camera>().orthographicSize ) {
+                    lastOrthographicSize = GetComponent<Camera>().orthographicSize;
                     changed = true;
                 }
             }
         }
         else {
-            if ( lastFieldOfView != camera.fieldOfView ) {
-                lastFieldOfView = camera.fieldOfView;
+            if ( lastFieldOfView != GetComponent<Camera>().fieldOfView ) {
+                lastFieldOfView = GetComponent<Camera>().fieldOfView;
                 changed = true;
             }
         }
 
         //
-        if ( lastOrthographic != camera.orthographic ) {
-            lastOrthographic = camera.orthographic;
+        if ( lastOrthographic != GetComponent<Camera>().orthographic ) {
+            lastOrthographic = GetComponent<Camera>().orthographic;
             changed = true;
         }
 
@@ -130,7 +130,7 @@ public class exPixelPerfectCamera : MonoBehaviour {
             exPixelPerfect[] ppfs = GameObject.FindObjectsOfType ( typeof(exPixelPerfect) ) as exPixelPerfect[];
             for ( int i = 0; i < ppfs.Length; ++i ) {
                 exSpriteBase sprite = ppfs[i].GetComponent<exSpriteBase>();
-                if ( sprite == null || sprite.renderCamera != camera )
+                if ( sprite == null || sprite.renderCamera != GetComponent<Camera>() )
                     continue;
 
                 CalculatePixelPerfectScale ( sprite, sprite.transform.position - transform.position );

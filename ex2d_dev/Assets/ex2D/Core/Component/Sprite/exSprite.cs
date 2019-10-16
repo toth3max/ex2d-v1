@@ -111,7 +111,7 @@ public class exSprite : exSpriteBase {
                         } 
                     }
                     else {
-                        Texture texture = renderer.sharedMaterial.mainTexture;
+                        Texture texture = GetComponent<Renderer>().sharedMaterial.mainTexture;
                         newWidth = trimUV.width * texture.width;
                         newHeight = trimUV.height * texture.height;
                     }
@@ -290,8 +290,8 @@ public class exSprite : exSpriteBase {
                                                 el.trimRect.height * finalScale.y );
                 }
                 else {
-                    if ( renderer.sharedMaterial != null ) {
-                        Texture texture = renderer.sharedMaterial.mainTexture;
+                    if ( GetComponent<Renderer>().sharedMaterial != null ) {
+                        Texture texture = GetComponent<Renderer>().sharedMaterial.mainTexture;
                         originalWidth   = texture.width * finalScale.x;
                         originalHeight  = texture.height * finalScale.y;
                         trimRect = new Rect ( trimUV.x * originalWidth,
@@ -593,7 +593,7 @@ public class exSprite : exSpriteBase {
         spanim = GetComponent<exSpriteAnimation>();
 
         if ( atlas_ != null ||
-             ( renderer.sharedMaterial && renderer.sharedMaterial.mainTexture != null ) ) 
+             ( GetComponent<Renderer>().sharedMaterial && GetComponent<Renderer>().sharedMaterial.mainTexture != null ) ) 
         {
             if ( meshFilter ) {
                 // create mesh ( in editor, this can duplicate mesh to prevent shared mesh for sprite)
@@ -602,7 +602,7 @@ public class exSprite : exSpriteBase {
                 ForceUpdateMesh( meshFilter_.sharedMesh );
 
                 // check if update mesh collider
-                MeshCollider meshCollider = collider as MeshCollider;  
+                MeshCollider meshCollider = GetComponent<Collider>() as MeshCollider;  
                 if ( meshCollider && meshCollider.sharedMesh == null ) {
                     this.UpdateColliderSize(0.2f);
                 }
@@ -618,8 +618,8 @@ public class exSprite : exSpriteBase {
         atlas_ = null;
         index_ = -1;
 
-        if ( renderer != null )
-            renderer.sharedMaterial = null;
+        if ( GetComponent<Renderer>() != null )
+            GetComponent<Renderer>().sharedMaterial = null;
 
         if ( meshFilter ) {
             DestroyImmediate( meshFilter_.sharedMesh, true );
@@ -668,7 +668,7 @@ public class exSprite : exSpriteBase {
         //
         if ( atlas_ != _atlas ) {
             atlas_ = _atlas;
-            renderer.sharedMaterial = _atlas.material;
+            GetComponent<Renderer>().sharedMaterial = _atlas.material;
             updateFlags |= UpdateFlags.UV;
             checkVertex = true;
         }
@@ -719,7 +719,7 @@ public class exSprite : exSpriteBase {
                 updateFlags = UpdateFlags.Vertex | UpdateFlags.UV | UpdateFlags.Color | UpdateFlags.Index;
 
                 // check if update mesh collider
-                MeshCollider meshCollider = collider as MeshCollider;  
+                MeshCollider meshCollider = GetComponent<Collider>() as MeshCollider;  
                 if ( meshCollider && meshCollider.sharedMesh == null ) {
                     this.UpdateColliderSize(0.2f);
                 }

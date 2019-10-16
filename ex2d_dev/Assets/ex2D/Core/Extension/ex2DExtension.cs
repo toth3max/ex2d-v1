@@ -190,7 +190,7 @@ public static class ex2DExtension {
     // ------------------------------------------------------------------ 
 
     public static void UpdateColliderSize ( this exPlane _plane, float _length ) {
-        Collider collider = _plane.collider;
+        Collider collider = _plane.GetComponent<Collider>();
 
         // update box collider
         if ( collider is BoxCollider ) {

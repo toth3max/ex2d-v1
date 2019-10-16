@@ -105,7 +105,7 @@ public class exCollisionHelper : MonoBehaviour {
     // ------------------------------------------------------------------ 
 
     public void AddMeshCollider () {
-        if ( collider == null ) {
+        if ( GetComponent<Collider>() == null ) {
             gameObject.AddComponent<MeshCollider>();
             UpdateCollider ();
         }
@@ -118,7 +118,7 @@ public class exCollisionHelper : MonoBehaviour {
     // ------------------------------------------------------------------ 
 
     public void AddBoxCollider () {
-        if ( collider == null ) {
+        if ( GetComponent<Collider>() == null ) {
             gameObject.AddComponent<BoxCollider>();
             UpdateCollider ();
         }
@@ -139,15 +139,15 @@ public class exCollisionHelper : MonoBehaviour {
 
     public void UpdateCenter () {
         if ( autoLength_ == false ||
-             collider == null )
+             GetComponent<Collider>() == null )
             return;
 
         if ( plane == null )
             plane = GetComponent<exPlane>();
 
         // update box collider
-        if ( collider is BoxCollider ) {
-            BoxCollider boxCollider = collider as BoxCollider;
+        if ( GetComponent<Collider>() is BoxCollider ) {
+            BoxCollider boxCollider = GetComponent<Collider>() as BoxCollider;
 
             Camera camera = plane.renderCamera;
 
@@ -194,7 +194,7 @@ public class exCollisionHelper : MonoBehaviour {
         if ( plane == null )
             plane = GetComponent<exPlane>();
 
-        if ( collider == null || 
+        if ( GetComponent<Collider>() == null || 
              autoResizeCollision == false )
             return;
 

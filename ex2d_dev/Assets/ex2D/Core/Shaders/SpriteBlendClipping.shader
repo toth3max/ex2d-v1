@@ -1,3 +1,6 @@
+// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 // ======================================================================================
 // File         : SpriteBlendClipping.shader
 // Author       : Wu Jie 
@@ -59,9 +62,9 @@ Shader "ex2D/Alpha Blended (Clipping)" {
 
 			v2f vert ( appdata_t _in ) {
 				v2f o;
-                float4 wpos = mul(_Object2World, _in.vertex);
+                float4 wpos = mul(unity_ObjectToWorld, _in.vertex);
                 o.worldPosition = mul(_ClipMatrix, wpos).xy;
-				o.vertex = mul(UNITY_MATRIX_MVP, _in.vertex);
+				o.vertex = UnityObjectToClipPos(_in.vertex);
 				o.color = _in.color;
 				o.texcoord = TRANSFORM_TEX(_in.texcoord, _MainTex);
 				return o;

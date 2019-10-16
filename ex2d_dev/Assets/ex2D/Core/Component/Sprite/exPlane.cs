@@ -244,7 +244,7 @@ public class exPlane : MonoBehaviour {
             if ( camera_ == null )
                 return null;
 
-            if ( spriteMng_ == null || spriteMng_.camera != camera_ ) {
+            if ( spriteMng_ == null || spriteMng_.GetComponent<Camera>() != camera_ ) {
                 spriteMng_ = camera_.GetComponent<exSpriteMng>();
                 if ( spriteMng_ == null )
                     spriteMng_ = camera_.gameObject.AddComponent<exSpriteMng>();
@@ -316,8 +316,8 @@ public class exPlane : MonoBehaviour {
     // ------------------------------------------------------------------ 
 
     protected void OnEnable () {
-        if ( renderer != null )
-            renderer.enabled = true;
+        if ( GetComponent<Renderer>() != null )
+            GetComponent<Renderer>().enabled = true;
     }
 
     // ------------------------------------------------------------------ 
@@ -330,8 +330,8 @@ public class exPlane : MonoBehaviour {
     // ------------------------------------------------------------------ 
 
     protected void OnDisable () {
-        if ( renderer != null )
-            renderer.enabled = false;
+        if ( GetComponent<Renderer>() != null )
+            GetComponent<Renderer>().enabled = false;
     }
 
     // DISABLE { 

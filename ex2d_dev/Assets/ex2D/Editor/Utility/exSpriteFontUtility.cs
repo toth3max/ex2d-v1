@@ -63,7 +63,7 @@ public static class exSpriteFontUtility {
             _spriteFont.clippingPlane = null;
             GameObject.DestroyImmediate( _spriteFont.meshFilter.sharedMesh, true );
             _spriteFont.meshFilter.sharedMesh = null; 
-            _spriteFont.renderer.sharedMaterial = null;
+            _spriteFont.GetComponent<Renderer>().sharedMaterial = null;
             return;
         }
 
@@ -81,7 +81,7 @@ public static class exSpriteFontUtility {
             newMesh.Clear();
 
             // update material 
-            _spriteFont.renderer.sharedMaterial = _spriteFont.fontInfo.pageInfos[0].material;
+            _spriteFont.GetComponent<Renderer>().sharedMaterial = _spriteFont.fontInfo.pageInfos[0].material;
 
             // update mesh
             _spriteFont.ForceUpdateMesh (newMesh);

@@ -63,16 +63,16 @@ public static class exSpriteBorderUtility {
         if ( _spriteBorder.guiBorder == null && _spriteBorder.atlas == null && _texture == null ) {
             GameObject.DestroyImmediate( _spriteBorder.meshFilter.sharedMesh, true );
             _spriteBorder.meshFilter.sharedMesh = null; 
-            _spriteBorder.renderer.sharedMaterial = null;
+            _spriteBorder.GetComponent<Renderer>().sharedMaterial = null;
             return;
         }
 
         // set a texture to it
         if ( _spriteBorder.atlas != null ) {
-            _spriteBorder.renderer.sharedMaterial = _spriteBorder.atlas.material;
+            _spriteBorder.GetComponent<Renderer>().sharedMaterial = _spriteBorder.atlas.material;
         }
         else if ( _texture != null ) {
-            _spriteBorder.renderer.sharedMaterial = exEditorHelper.GetDefaultMaterial(_texture, _texture.name);
+            _spriteBorder.GetComponent<Renderer>().sharedMaterial = exEditorHelper.GetDefaultMaterial(_texture, _texture.name);
         }
         EditorUtility.UnloadUnusedAssets();
 

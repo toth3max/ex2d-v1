@@ -159,9 +159,9 @@ public class exClipping : exPlane {
         for ( int i = 0; i < planeInfoList.Count; ++i ) {
             PlaneInfo pi = planeInfoList[i];
             exPlane plane = pi.plane;
-            if ( plane && plane.renderer && plane.renderer.sharedMaterial ) {
-                Texture2D texture = plane.renderer.sharedMaterial.mainTexture as Texture2D;
-                plane.renderer.material = textureToClipMaterialTable[texture];
+            if ( plane && plane.GetComponent<Renderer>() && plane.GetComponent<Renderer>().sharedMaterial ) {
+                Texture2D texture = plane.GetComponent<Renderer>().sharedMaterial.mainTexture as Texture2D;
+                plane.GetComponent<Renderer>().material = textureToClipMaterialTable[texture];
             }
         }
     }
@@ -177,8 +177,8 @@ public class exClipping : exPlane {
         // 
         for ( int i = 0; i < planeInfoList.Count; ++i ) {
             PlaneInfo pi = planeInfoList[i];
-            if ( pi.plane && pi.plane.renderer )
-                pi.plane.renderer.sharedMaterial = pi.material;
+            if ( pi.plane && pi.plane.GetComponent<Renderer>() )
+                pi.plane.GetComponent<Renderer>().sharedMaterial = pi.material;
         }
     }
 
@@ -201,8 +201,8 @@ public class exClipping : exPlane {
     protected void AddPlaneInfo ( exPlane _plane ) {
         PlaneInfo planeInfo = new PlaneInfo();
         planeInfo.plane = _plane;
-        if ( _plane.renderer != null )
-            planeInfo.material = _plane.renderer.sharedMaterial;
+        if ( _plane.GetComponent<Renderer>() != null )
+            planeInfo.material = _plane.GetComponent<Renderer>().sharedMaterial;
         planeInfoList.Add(planeInfo);
     }
 
@@ -213,8 +213,8 @@ public class exClipping : exPlane {
     protected void InsertPlaneInfo ( int _idx, exPlane _plane ) {
         PlaneInfo planeInfo = new PlaneInfo();
         planeInfo.plane = _plane;
-        if ( _plane.renderer != null )
-            planeInfo.material = _plane.renderer.sharedMaterial;
+        if ( _plane.GetComponent<Renderer>() != null )
+            planeInfo.material = _plane.GetComponent<Renderer>().sharedMaterial;
         planeInfoList.Insert(_idx,planeInfo);
     }
 
@@ -226,8 +226,8 @@ public class exClipping : exPlane {
         for ( int i = 0; i < planeInfoList.Count; ++i ) {
             PlaneInfo pi = planeInfoList[i];
             if ( _plane ==  pi.plane ) {
-                if ( _plane.renderer != null )
-                    _plane.renderer.sharedMaterial = pi.material;
+                if ( _plane.GetComponent<Renderer>() != null )
+                    _plane.GetComponent<Renderer>().sharedMaterial = pi.material;
                 planeInfoList.RemoveAt(i);
                 return true;
             }
@@ -253,8 +253,8 @@ public class exClipping : exPlane {
         }
 
         // update plane info material
-        if ( _plane.renderer != null )
-            planeInfo.material = _plane.renderer.sharedMaterial;
+        if ( _plane.GetComponent<Renderer>() != null )
+            planeInfo.material = _plane.GetComponent<Renderer>().sharedMaterial;
 
         // if we are in player or if we are running in editor
         if ( Application.isPlaying ) {
@@ -326,8 +326,8 @@ public class exClipping : exPlane {
             _plane.clippingPlane = null;
 
             if ( isDyanmic || (Application.isPlaying == false ) ) {
-                if ( _plane.renderer && _plane.renderer.sharedMaterial ) {
-                    CheckAndRemoveClipMaterial(_plane.renderer.sharedMaterial.mainTexture as Texture2D);
+                if ( _plane.GetComponent<Renderer>() && _plane.GetComponent<Renderer>().sharedMaterial ) {
+                    CheckAndRemoveClipMaterial(_plane.GetComponent<Renderer>().sharedMaterial.mainTexture as Texture2D);
                 }
             }
         }
@@ -341,8 +341,8 @@ public class exClipping : exPlane {
     public void Clear () {
         for ( int i = 0; i < planeInfoList.Count; ++i ) {
             PlaneInfo pi = planeInfoList[i];
-            if ( pi.plane && pi.plane.renderer && pi.plane.renderer.sharedMaterial  )
-                pi.plane.renderer.sharedMaterial = pi.material;
+            if ( pi.plane && pi.plane.GetComponent<Renderer>() && pi.plane.GetComponent<Renderer>().sharedMaterial  )
+                pi.plane.GetComponent<Renderer>().sharedMaterial = pi.material;
         }
         planeInfoList.Clear();
         textureToClipMaterialTable.Clear();
@@ -354,7 +354,7 @@ public class exClipping : exPlane {
     // ------------------------------------------------------------------ 
 
     protected void ApplyClipMaterial ( exPlane _plane ) {
-        Renderer r = _plane.renderer;
+        Renderer r = _plane.GetComponent<Renderer>();
         if ( r != null && r.sharedMaterial != null ) {
             Texture2D texture = r.sharedMaterial.mainTexture as Texture2D;
             if ( texture != null ) {

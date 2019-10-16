@@ -112,7 +112,7 @@ public class exPixelPerfect : MonoBehaviour {
                 cameraToSprite = newCameraToSprite;
 
                 //
-                if ( ppfCamera == null || ppfCamera.camera != sprite.renderCamera ) {
+                if ( ppfCamera == null || ppfCamera.GetComponent<Camera>() != sprite.renderCamera ) {
                     ppfCamera = sprite.renderCamera.GetComponent<exPixelPerfectCamera>();
                     if ( ppfCamera == null ) {
                         ppfCamera = sprite.renderCamera.gameObject.AddComponent<exPixelPerfectCamera>();

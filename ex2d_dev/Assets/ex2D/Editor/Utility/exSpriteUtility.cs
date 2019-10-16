@@ -62,7 +62,7 @@ public static class exSpriteUtility {
             _sprite.clippingPlane = null;
             GameObject.DestroyImmediate( _sprite.meshFilter.sharedMesh, true );
             _sprite.meshFilter.sharedMesh = null; 
-            _sprite.renderer.sharedMaterial = null;
+            _sprite.GetComponent<Renderer>().sharedMaterial = null;
             return;
         }
 
@@ -73,10 +73,10 @@ public static class exSpriteUtility {
 
         // set a texture to it
         if ( _sprite.atlas != null ) {
-            _sprite.renderer.sharedMaterial = _sprite.atlas.material;
+            _sprite.GetComponent<Renderer>().sharedMaterial = _sprite.atlas.material;
         }
         else if ( _texture != null ) {
-            _sprite.renderer.sharedMaterial = exEditorHelper.GetDefaultMaterial(_texture,_texture.name);
+            _sprite.GetComponent<Renderer>().sharedMaterial = exEditorHelper.GetDefaultMaterial(_texture,_texture.name);
         }
         EditorUtility.UnloadUnusedAssets();
 

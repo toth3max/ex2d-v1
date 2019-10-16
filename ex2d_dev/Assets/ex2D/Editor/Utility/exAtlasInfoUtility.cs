@@ -123,7 +123,7 @@ public static partial class exAtlasInfoUtility {
                                                              // around atlas and free up some pixel space
             importSettings.isReadable = false;
             importSettings.mipmapEnabled = false;
-            importSettings.textureType = TextureImporterType.Advanced;
+            importSettings.textureType = TextureImporterType.Default;
             importSettings.npotScale = TextureImporterNPOTScale.None;
             AssetDatabase.ImportAsset( atlasTexturePath );
 

@@ -488,7 +488,7 @@ partial class exAtlasEditor : EditorWindow {
                         importSettings.isReadable = true;
                         importSettings.wrapMode = TextureWrapMode.Clamp;
                         importSettings.mipmapEnabled = false;
-                        importSettings.textureType = TextureImporterType.Advanced;
+                        importSettings.textureType = TextureImporterType.Default;
                         importSettings.npotScale = TextureImporterNPOTScale.None;
                         AssetDatabase.ImportAsset( atlasTexturePath );
 

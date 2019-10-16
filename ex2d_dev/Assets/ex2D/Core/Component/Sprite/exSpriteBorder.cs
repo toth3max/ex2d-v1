@@ -362,7 +362,7 @@ public class exSpriteBorder : exSpriteBase {
                 float xEnd    = 1.0f;
                 float yEnd    = 1.0f;
 
-                Texture texture = renderer.sharedMaterial.mainTexture;
+                Texture texture = GetComponent<Renderer>().sharedMaterial.mainTexture;
                 float leftRatio     = (float)guiBorder_.border.left   / (float)texture.width; 
                 float rightRatio    = (float)guiBorder_.border.right  / (float)texture.width; 
                 float topRatio      = (float)guiBorder_.border.top    / (float)texture.height; 
@@ -482,7 +482,7 @@ public class exSpriteBorder : exSpriteBase {
 
         if ( guiBorder_ != null 
              && ( atlas_ != null 
-                  || ( renderer.sharedMaterial != null && renderer.sharedMaterial.mainTexture != null ) ) ) 
+                  || ( GetComponent<Renderer>().sharedMaterial != null && GetComponent<Renderer>().sharedMaterial.mainTexture != null ) ) ) 
         {
             if ( meshFilter ) {
                 // create mesh ( in editor, this can duplicate mesh to prevent shared mesh for sprite)
@@ -491,7 +491,7 @@ public class exSpriteBorder : exSpriteBase {
                 ForceUpdateMesh( meshFilter_.sharedMesh );
 
                 // check if update mesh collider
-                MeshCollider meshCollider = collider as MeshCollider;  
+                MeshCollider meshCollider = GetComponent<Collider>() as MeshCollider;  
                 if ( meshCollider && meshCollider.sharedMesh == null ) {
                     this.UpdateColliderSize(0.2f);
                 }
@@ -524,8 +524,8 @@ public class exSpriteBorder : exSpriteBase {
         index_ = -1;
         guiBorder_ = null;
 
-        if ( renderer != null )
-            renderer.sharedMaterial = null;
+        if ( GetComponent<Renderer>() != null )
+            GetComponent<Renderer>().sharedMaterial = null;
 
         if ( meshFilter ) {
             DestroyImmediate( meshFilter_.sharedMesh, true );
@@ -576,7 +576,7 @@ public class exSpriteBorder : exSpriteBase {
         if ( atlas_ != _atlas ) {
             atlas_ = _atlas;
             if ( atlas_ )
-                renderer.sharedMaterial = _atlas.material;
+                GetComponent<Renderer>().sharedMaterial = _atlas.material;
             updateFlags |= UpdateFlags.UV;
         }
 

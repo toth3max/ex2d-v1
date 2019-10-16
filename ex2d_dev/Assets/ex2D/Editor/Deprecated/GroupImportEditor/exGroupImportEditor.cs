@@ -180,8 +180,8 @@ class exGroupImportEditor : EditorWindow {
                     path = AssetDatabase.GetAssetPath(o);
                     AudioImporter importer = AudioImporter.GetAtPath(path) as AudioImporter;
 
-                    importer.format             = firstImporter.format;                             
-                    importer.compressionBitrate = firstImporter.compressionBitrate;         
+                    //importer.format             = firstImporter..format;                             
+                    //importer.compressionBitrate = firstImporter.compressionBitrate;         
                     importer.threeD             = firstImporter.threeD;       
                     importer.forceToMono        = firstImporter.forceToMono;
                     importer.hardware           = firstImporter.hardware;

@@ -65,7 +65,7 @@ public class exTileMapRenderer : exPlane {
         base.Awake();
 
         if ( tileMap_ != null ||
-             ( renderer.sharedMaterial != null && renderer.sharedMaterial.mainTexture != null ) ) 
+             ( GetComponent<Renderer>().sharedMaterial != null && GetComponent<Renderer>().sharedMaterial.mainTexture != null ) ) 
         {
             meshFilter.mesh = new Mesh();
             meshFilter_.sharedMesh.hideFlags = HideFlags.DontSave;
@@ -80,8 +80,8 @@ public class exTileMapRenderer : exPlane {
     public void Clear () {
         tileMap_ = null;
 
-        if ( renderer != null )
-            renderer.sharedMaterial = null;
+        if ( GetComponent<Renderer>() != null )
+            GetComponent<Renderer>().sharedMaterial = null;
 
         if ( meshFilter ) {
             DestroyImmediate( meshFilter_.sharedMesh, true );
@@ -300,7 +300,7 @@ public class exTileMapRenderer : exPlane {
         // if we have tilemap
         if ( tileMap_ != null ) {
             if ( tileMap_.tileSheet ) {
-                renderer.sharedMaterial = tileMap_.tileSheet.material;
+                GetComponent<Renderer>().sharedMaterial = tileMap_.tileSheet.material;
             }
 
             meshFilter_.mesh = new Mesh();

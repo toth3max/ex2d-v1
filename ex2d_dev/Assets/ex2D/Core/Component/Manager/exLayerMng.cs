@@ -69,9 +69,9 @@ public class exLayerMng : exLayer {
             //
             List<exLayer> layerList = new List<exLayer>();
             List<exLayer> specialLayerList = new List<exLayer>();
-            float totalDepth = camera.farClipPlane - camera.nearClipPlane;
+            float totalDepth = GetComponent<Camera>().farClipPlane - GetComponent<Camera>().nearClipPlane;
             totalDepth -= 0.2f; // we leave 1.0 for both near and far clip
-            float startFrom = transform.position.z + camera.nearClipPlane + 0.1f;
+            float startFrom = transform.position.z + GetComponent<Camera>().nearClipPlane + 0.1f;
 
             int totalNormalLayerCount = 0;
             for ( int i = 0; i < children.Count; ++i ) {

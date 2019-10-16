@@ -61,12 +61,12 @@ public class exSpriteFont : exSpriteBase {
                 }
 
                 if ( fontInfo_ != null && fontInfo_.pageInfos.Count == 1 ) {
-                    renderer.sharedMaterial = fontInfo_.pageInfos[0].material;
+                    GetComponent<Renderer>().sharedMaterial = fontInfo_.pageInfos[0].material;
                 }
                 else {
                     GameObject.DestroyImmediate( meshFilter_.sharedMesh, true );
                     meshFilter_.sharedMesh = null; 
-                    renderer.sharedMaterial = null;
+                    GetComponent<Renderer>().sharedMaterial = null;
                 }
 
                 updateFlags |= UpdateFlags.Text;
@@ -966,7 +966,7 @@ public class exSpriteFont : exSpriteBase {
                 ForceUpdateMesh (meshFilter_.sharedMesh);
 
                 // check if update mesh collider
-                MeshCollider meshCollider = collider as MeshCollider;  
+                MeshCollider meshCollider = GetComponent<Collider>() as MeshCollider;  
                 if ( meshCollider && meshCollider.sharedMesh == null ) {
                     this.UpdateColliderSize(0.2f);
                 }
@@ -981,8 +981,8 @@ public class exSpriteFont : exSpriteBase {
     public void Clear () {
         fontInfo_ = null;
 
-        if ( renderer != null )
-            renderer.sharedMaterial = null;
+        if ( GetComponent<Renderer>() != null )
+            GetComponent<Renderer>().sharedMaterial = null;
 
         if ( meshFilter ) {
             DestroyImmediate( meshFilter_.sharedMesh, true );

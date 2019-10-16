@@ -231,7 +231,7 @@ public class exUIMng : MonoBehaviour {
             return;
 
         //
-        if ( camera == null ) {
+        if ( GetComponent<Camera>() == null ) {
             Debug.LogError ( "The exUIMng should attach to a camera" );
             return;
         }
@@ -627,8 +627,8 @@ public class exUIMng : MonoBehaviour {
 
     exUIElement PickElement ( Vector2 _pos ) {
         if ( useRayCast ) {
-            Ray ray = camera.ScreenPointToRay ( _pos );
-            ray.origin = new Vector3 ( ray.origin.x, ray.origin.y, camera.transform.position.z );
+            Ray ray = GetComponent<Camera>().ScreenPointToRay ( _pos );
+            ray.origin = new Vector3 ( ray.origin.x, ray.origin.y, GetComponent<Camera>().transform.position.z );
             RaycastHit[] hits = Physics.RaycastAll(ray);
             // DISABLE { 
             // System.Array.Sort(hits, raycastSorter);
@@ -663,7 +663,7 @@ public class exUIMng : MonoBehaviour {
             return null;
         }
         else {
-            Vector3 worldPointerPos = camera.ScreenToWorldPoint ( _pos );
+            Vector3 worldPointerPos = GetComponent<Camera>().ScreenToWorldPoint ( _pos );
             rootElements.Sort(elementSorterByZ);
             for ( int i = 0; i < rootElements.Count; ++i ) {
                 exUIElement el = rootElements[i];

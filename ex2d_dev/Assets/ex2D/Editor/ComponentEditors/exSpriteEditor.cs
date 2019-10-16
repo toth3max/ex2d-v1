@@ -163,7 +163,7 @@ public class exSpriteEditor : exSpriteBaseEditor {
         bool newTrimTexture = EditorGUILayout.Toggle ( "Trim Texture", editSprite.trimTexture );
         if ( !useAtlas && 
              (textureChanged || newTrimTexture != editSprite.trimTexture) ) {
-            editSprite.renderer.sharedMaterial = exEditorHelper.GetDefaultMaterial(editTexture, editTexture.name);
+            editSprite.GetComponent<Renderer>().sharedMaterial = exEditorHelper.GetDefaultMaterial(editTexture, editTexture.name);
             editSprite.trimTexture = newTrimTexture; 
 
             // get trimUV

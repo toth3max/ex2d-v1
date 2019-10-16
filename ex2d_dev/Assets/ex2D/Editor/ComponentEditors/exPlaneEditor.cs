@@ -55,8 +55,8 @@ public class exPlaneEditor : Editor {
         if ( target != editPlane ) {
             editPlane = target as exPlane;
 
-            if ( editPlane.renderer != null ) {
-                EditorUtility.SetSelectedWireframeHidden(editPlane.renderer, true);
+            if ( editPlane.GetComponent<Renderer>() != null ) {
+                EditorUtility.SetSelectedWireframeHidden(editPlane.GetComponent<Renderer>(), true);
                 // EditorUtility.SetSelectedWireframeHidden(editPlane.renderer, false); // DEBUG
             }
 
