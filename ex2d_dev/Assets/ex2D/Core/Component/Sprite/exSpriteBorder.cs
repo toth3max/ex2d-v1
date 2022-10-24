@@ -362,7 +362,7 @@ public class exSpriteBorder : exSpriteBase {
                 float xEnd    = 1.0f;
                 float yEnd    = 1.0f;
 
-                Texture texture = GetComponent<Renderer>().sharedMaterial.mainTexture;
+                Texture texture = GetComponent<Renderer>().material.mainTexture; //.sharedMaterial.mainTexture;
                 float leftRatio     = (float)guiBorder_.border.left   / (float)texture.width; 
                 float rightRatio    = (float)guiBorder_.border.right  / (float)texture.width; 
                 float topRatio      = (float)guiBorder_.border.top    / (float)texture.height; 

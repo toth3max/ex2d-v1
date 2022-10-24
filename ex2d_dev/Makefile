@@ -13,12 +13,12 @@
 # UNITY_PATH = $(subst \,/,$(PROGRAMFILES))/Unity/Editor/Data
 # settings (mac)
 #UNITY_PATH = /Applications/Unity/Unity.app/Contents/Frameworks
-UNITY_PATH = /Applications/Unity/Hub/Editor/2018.4.11f1/Unity.app/Contents/Frameworks
+UNITY_PATH = /Applications/Unity/Hub/Editor/2021.3.9f1/Unity.app/Contents/Frameworks
 
 # unit essential (windows)
 # COMPILER = $(UNITY_PATH)/Mono/bin/gmcs.bat
 # unit essential (mac)
-COMPILER = $(UNITY_PATH)/../Mono/bin/gmcs
+COMPILER = mcs
 
 UNITY_ENGINE_DLL = $(UNITY_PATH)/../Managed/UnityEngine.dll
 UNITY_EDITOR_DLL = $(UNITY_PATH)/../Managed/UnityEditor.dll

@@ -99,7 +99,7 @@ public class exSpriteAnimationDB : ScriptableObject {
             spAnimClip.Build ();
 
             spAnimClip = null;
-            EditorUtility.UnloadUnusedAssetsIgnoreManagedReferences();
+            // EditorUtility.UnloadUnusedAssetsIgnoreManagedReferences();
         }
     }
 
@@ -125,7 +125,7 @@ public class exSpriteAnimationDB : ScriptableObject {
         try {
             EditorUtility.DisplayProgressBar( "Syncing exSpriteAnimationDB...", "Syncing...", 0.5f );    
             SyncDirectory ("Assets");
-            EditorUtility.UnloadUnusedAssetsIgnoreManagedReferences();
+            // EditorUtility.UnloadUnusedAssetsIgnoreManagedReferences();
             EditorUtility.ClearProgressBar();    
         }
         catch ( System.Exception ) {
@@ -149,8 +149,8 @@ public class exSpriteAnimationDB : ScriptableObject {
                 AddSpriteAnimClip(spAnimClip);
 
                 spAnimClip = null;
-                EditorUtility.UnloadUnusedAssetsIgnoreManagedReferences();
-                System.GC.Collect();
+                // EditorUtility.UnloadUnusedAssetsIgnoreManagedReferences();
+                // System.GC.Collect();
             }
         }
 

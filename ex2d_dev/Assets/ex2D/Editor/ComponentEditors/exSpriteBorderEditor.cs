@@ -400,7 +400,7 @@ public class exSpriteBorderEditor : exSpriteBaseEditor {
                                                      editSpriteBorder.transform.rotation,
                                                      HandleUtility.GetHandleSize(pos) / 20.0f,
                                                      Vector3.zero,
-                                                     Handles.DotCap
+                                                     Handles.DotHandleCap
                                                    );
             HandleRezie ( i, pos, newPos );
         }

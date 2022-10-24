@@ -99,8 +99,8 @@ public class exAtlasDB : ScriptableObject {
             exAtlasInfoUtility.Build ( atlasInfo );
 
             atlasInfo = null;
-            EditorUtility.UnloadUnusedAssetsIgnoreManagedReferences();
-            System.GC.Collect();
+            // EditorUtility.UnloadUnusedAssetsIgnoreManagedReferences();
+            // System.GC.Collect();
         }
     }
 
@@ -126,7 +126,7 @@ public class exAtlasDB : ScriptableObject {
         try {
             EditorUtility.DisplayProgressBar( "Syncing exAtlasDB...", "Syncing...", 0.5f );    
             SyncDirectory ("Assets");
-            EditorUtility.UnloadUnusedAssetsIgnoreManagedReferences();
+            // EditorUtility.UnloadUnusedAssetsIgnoreManagedReferences();
             EditorUtility.ClearProgressBar();    
         }
         catch ( System.Exception ) {
@@ -151,8 +151,8 @@ public class exAtlasDB : ScriptableObject {
                 AddAtlasInfo(atlasInfo);
 
                 atlasInfo = null;
-                EditorUtility.UnloadUnusedAssetsIgnoreManagedReferences();
-                System.GC.Collect();
+                // EditorUtility.UnloadUnusedAssetsIgnoreManagedReferences();
+                // System.GC.Collect();
             }
         }
 

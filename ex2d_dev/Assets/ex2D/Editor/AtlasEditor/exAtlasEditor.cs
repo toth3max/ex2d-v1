@@ -324,7 +324,7 @@ partial class exAtlasEditor : EditorWindow {
                         // NOTE: if we don't write data to disk, all changes will go back.
                         string path = AssetDatabase.GetAssetPath(curEdit.texture);
                         exTextureHelper.SetReadable ( curEdit.texture, true );
-                        curEdit.texture.Resize( width, height );
+                        curEdit.texture.Reinitialize( width, height );
                         curEdit.ClearAtlasTexture();
 
                         // NOTE: we can not write back directly since the texture format problem  
